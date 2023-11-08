@@ -54,6 +54,31 @@ class BinarySearchTree {
    * Returns the tree instance. Uses iteration. */
 
   insert(val) {
+    // create new node with Node class constructor, pass in val
+    // set current to this
+    // do while loop that ends if current is null
+    // check if current.val is greater than val, go to the left, else left
+    // set current to right or left do the comparison to val again
+    // check if current right or left is null?
+    let newNode = new Node(val);
+    let current = this.root;
+    console.log("current: ", current);
+
+    while(current) {
+      if(current.val > val) {
+        current = current.left ? current.left : newNode;
+        console.log("if current greater than val, set current to left ", current);
+        // if (current === null) {
+        //   current.left = newNode;
+        // }
+      } else {
+        current = current.right ? current.right : newNode;
+        console.log("if current less than val, set current to right ", current);
+        // if (current === null) {
+        //   current.right = newNode;
+        // }
+      }
+    }
 
   }
 
