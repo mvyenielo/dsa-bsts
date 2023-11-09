@@ -60,23 +60,32 @@ class BinarySearchTree {
     // check if current.val is greater than val, go to the left, else left
     // set current to right or left do the comparison to val again
     // check if current right or left is null?
-    let newNode = new Node(val);
-    let current = this.root;
-    console.log("current: ", current);
 
-    while(current) {
-      if(current.val > val) {
-        current = current.left ? current.left : newNode;
-        console.log("if current greater than val, set current to left ", current);
-        // if (current === null) {
-        //   current.left = newNode;
-        // }
+
+    let newNode = new Node(val);
+
+    if (this.root === null) {
+      this.root = newNode;
+      return;
+    }
+
+    let current = this.root;
+
+    while (current) {
+      if (current.val > val) {
+        if (current.left === null) {
+          current.left = newNode;
+          return;
+        } else {
+          current = current.left;
+        }
       } else {
-        current = current.right ? current.right : newNode;
-        console.log("if current less than val, set current to right ", current);
-        // if (current === null) {
-        //   current.right = newNode;
-        // }
+        if (current.right === null) {
+          current.right = newNode;
+          return;
+        } else {
+          current = current.right;
+        }
       }
     }
 
@@ -86,7 +95,15 @@ class BinarySearchTree {
    * Returns the tree instance. Uses recursion. */
 
   insertRecursively(val) {
+    //TODO: psuedo
+    // if node is null
+    // root becomes new node -> return
+    // if current value is greater than value
+    // call recursion on left node
+    // else
+    // call recursion on right node
 
+    // return
   }
 
   /** find(val): Search the BST for a node with value val.
