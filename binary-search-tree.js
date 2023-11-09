@@ -11,6 +11,19 @@ class Node {
   * Returns the node, if found; else undefined. Uses recursion. */
 
   findRecursively(val) {
+    let current = this;
+
+    if (current.val === val) return current;
+
+    if (current.val > val) {
+      if (current.left) {
+        return current.left.findRecursively(val);
+      }
+    } else {
+      if (current.right) {
+        return current.right.findRecursively(val);
+      }
+    }
 
   }
 
@@ -29,16 +42,16 @@ class Node {
     // if current value is greater than value
     if (current.val > val) {
       if (current.left) {
-        return current.left.insertRecursively(val)
+        return current.left.insertRecursively(val);
       } else {
         current.left = newNode;
         return current.left;
       }
     } else {
       if (current.right) {
-        return current.right.insertRecursively(val)
+        return current.right.insertRecursively(val);
       } else {
-        current.right= newNode;
+        current.right = newNode;
         return current.right;
       }
     }
@@ -49,7 +62,15 @@ class Node {
   * Returns an array of visited nodes. */
 
   dfsPreOrder() {
+    let nodeValues = [];
 
+    if (this.val === null) return;
+
+    nodeValues.push(this.val, ...this.left.dfsPreOrder(), ...this.right.dfsPreOrder());
+    // this.left.dfsPreOrder();
+    // this.right.dfsPreOrder();
+
+    return nodeValues;
   }
 
   /** dfsInOrder(): Traverse from the invoking node using in-order DFS.
@@ -135,7 +156,7 @@ class BinarySearchTree {
   find(val) {
     let current = this.root;
 
-    while(current) {
+    while (current) {
       if (current.val === val) {
         return current;
       }
@@ -147,14 +168,14 @@ class BinarySearchTree {
    * Returns the node, if found; else undefined. Uses recursion. */
 
   findRecursively(val) {
-
+    return this.root.findRecursively(val);
   }
 
   /** dfsPreOrder(): Traverse the BST using pre-order DFS.
    * Returns an array of visited nodes. */
 
   dfsPreOrder() {
-
+    return this.root.dfsPreOrder();
   }
 
   /** dfsInOrder(): Traverse the BST using in-order DFS.
