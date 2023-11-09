@@ -65,10 +65,13 @@ class Node {
     let nodeValues = [];
 
     if (this.val === null) return;
-
-    nodeValues.push(this.val, ...this.left.dfsPreOrder(), ...this.right.dfsPreOrder());
-    // this.left.dfsPreOrder();
-    // this.right.dfsPreOrder();
+    nodeValues.push(this.val);
+    if(this.left) {
+      nodeValues.push(...this.left.dfsPreOrder());
+    }
+    if(this.right) {
+      nodeValues.push(...this.right.dfsPreOrder());
+    }
 
     return nodeValues;
   }
@@ -77,7 +80,21 @@ class Node {
   * Returns an array of visited nodes. */
 
   dfsInOrder() {
+    let nodeValues = [];
 
+    if (this.val === null) return;
+
+    if(this.left) {
+      nodeValues.push(...this.left.dfsInOrder());
+    }
+
+    nodeValues.push(this.val);
+
+    if(this.right) {
+      nodeValues.push(...this.right.dfsInOrder());
+    }
+
+    return nodeValues;
   }
 
   /** dfsPostOrder(): Traverse from the invoking node using post-order DFS.
@@ -175,6 +192,8 @@ class BinarySearchTree {
    * Returns an array of visited nodes. */
 
   dfsPreOrder() {
+    if (this.root === null) return [];
+
     return this.root.dfsPreOrder();
   }
 
@@ -182,7 +201,9 @@ class BinarySearchTree {
    * Returns an array of visited nodes. */
 
   dfsInOrder() {
+    if (this.root === null) return [];
 
+    return this.root.dfsInOrder();
   }
 
   /** dfsPostOrder(): Traverse the BST using post-order DFS.
